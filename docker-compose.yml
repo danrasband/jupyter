@@ -1,6 +1,9 @@
 ---
 version: '3.8'
 
+volumes:
+  pg-data:
+
 services:
   jupyter:
     build:
@@ -13,3 +16,12 @@ services:
     volumes:
       - $HOME/Projects/:/home/jovyan/work
       - $HOME/Data/:/home/jovyan/data
+
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRESS_PASSWORD: example
+    volumes:
+      - pg-data:/var/lib/postgresql/data
