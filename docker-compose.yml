@@ -1,0 +1,15 @@
+---
+version: '3.8'
+
+services:
+  jupyter:
+    build:
+      dockerfile: docker/jupyter/Dockerfile
+      context: ./
+    ports:
+      - 8888:8888
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - $HOME/Projects/:/home/jovyan/work
+      - $HOME/Data/:/home/jovyan/data
