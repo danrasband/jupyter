@@ -1,11 +1,13 @@
 FROM jupyter/scipy-notebook
 
 RUN conda install --quiet --yes \
-    'altair=4.1.0' \
-    jupyter_contrib_nbextensions \
-    && \
-    conda clean --all -f -y && \
-    fix-permissions "${CONDA_DIR}" && \
-    fix-permissions "/home/${NB_USER}"
+  'altair=4.1.0' \
+  psycopg2 \
+  geopandas \
+  newspaper3k \
+  spacy \
+  && conda clean --all -f -y \
+  && fix-permissions "${CONDA_DIR}" \
+  && fix-permissions "/home/${NB_USER}"
 
-RUN jupyter nbextension enable codefolding/main
+RUN python -m spacy download en_core_web_lg
