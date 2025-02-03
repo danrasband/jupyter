@@ -6,8 +6,8 @@ volumes:
 services:
   jupyter:
     build:
-      dockerfile: docker/jupyter/Dockerfile
-      context: ./
+      dockerfile: ./Dockerfile
+      context: ./docker/jupyter
     ports:
       - 8888:8888
     environment:
